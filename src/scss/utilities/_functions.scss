@@ -1,0 +1,43 @@
+.categoryCard{
+    position: absolute;
+    filter: contrast(70%);
+    filter: brightness(70%);
+    transition: all .4s 0s ease-in ;
+    &:hover{
+        transform: scale(1.2,1.2);
+        filter: brightness(50%);
+    }
+}
+
+.title{
+    font-family: $font-primary;
+    font-size: $title;
+    font-weight: 700;
+    line-height: 2;
+}
+
+.subtitle{
+    font-family: $font-primary;
+    font-size: $subtitle;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.paragraph{
+    font-family: $font-primary;
+    font-size: $paragraph;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.buttons{
+    outline: none;
+    border: none;
+    font-family: $font-primary;
+    font-size: $paragraph;
+    font-weight: 400;
+    transition: all .5s 0s ease;
+    &:hover{
+        cursor: pointer;
+    }
+}

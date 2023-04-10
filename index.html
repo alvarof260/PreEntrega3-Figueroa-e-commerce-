@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/style.css">
+    <title>Plug - Home</title>
+</head>
+<body>
+  <div class="site-wrap">
+    <!-- header con navbar-->
+    <header>
+        <nav class="navbar">
+            <!--div parte izquierda-->
+            <div class="navbar-left">
+                <h1 class="navbar-left__logo">.Plug</h1>
+                <ul class="navbar-left__nav-list nav-list">
+                    <li class="nav-item"><a class="nav-link" href="">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Nosotros</a></li>
+                    <li class="nav-item nav-item-anotherlist"><a class="nav-link" href="src/html/categorias.html"><span>Categorias</span><i class="fa-solid fa-chevron-down"></i></a>
+                        <ul class="nav-list--inside">
+                            <li class="nav-item--inside nav-item"><a class="nav-link--inside nav-link" href="">Buzos</a></li>
+                            <li class="nav-item--inside nav-item"><a class="nav-link--inside nav-link" href="">Remeras</a></li>
+                            <li class="nav-item--inside nav-item"><a class="nav-link--inside nav-link" href="">Pantalones</a></li>
+                            <li class="nav-item--inside nav-item"><a class="nav-link--inside nav-link" href="">Zapatillas</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--div parte del centro-->
+            <div class="navbar-center">
+                <form action="" method="">
+                    <input type="search" name="search" id="sea" class="navbar-center__bar-search" placeholder="buscar...">
+                    <button type="submit" class="navbar-center__btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+            <!--div parte derecha-->
+            <div class="navbar__navbar-right navbar-right">
+                <a class="fa-solid fa-user navbar-right__icon flip-diagonal-1-tr"></a>
+                <a class="fa-solid fa-heart navbar-right__icon flip-diagonal-1-tr"></a>
+                <div class="navbar-right__cart">
+                    <a class="fa-solid fa-cart-shopping navbar-right__icon"></a>
+                    <div class="navbar-right__noti flip-diagonal-1-tr">
+                        <p class="noti__text">0</p>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="wrap">
+            <div class="slider">
+                <div class="slides">
+                    <input class="slides__input" checked type="radio" name="radio-btn" id="r1">
+                    <input class="slides__input" type="radio" name="radio-btn" id="r2">
+                    <input class="slides__input" type="radio" name="radio-btn" id="r3">
+
+                    <div class="slide first">
+                        <img class="slide__img" src="src/assets/slider-1.webp" alt="">
+                    </div>
+                    <div class="slide">
+                        <img class="slide__img" src="src/assets/slider-2.webp" alt="">
+                    </div>
+                    <div class="slide">
+                        <img class="slide__img" src="src/assets/slider-3.webp" alt="">
+                    </div>
+                    
+
+                    <div class="navigation-auto">
+                        <div class="auto-r1 auto"></div>
+                        <div class="auto-r2 auto"></div>
+                        <div class="auto-r3 auto"></div>
+                    </div>
+                </div>
+
+                <div class="navigation-manual">
+                    <label for="r1" class="manual-btn"></label>
+                    <label for="r2" class="manual-btn"></label>
+                    <label for="r3" class="manual-btn"></label>
+                </div>
+            </div>
+
+            <article class="products-recommend">
+                <h2 class="products-recommend__title">PRODUCTOS DESTACADOS</h2>
+                <p class="products-recommend__description">Productos más vendidos en este último tiempo</p>
+                <div class="products-recommend__flex" id="reco">
+                  
+                </div>
+            </article>
+
+            <article class="squares-category">
+                <a class="squares-category__square" id="buzos" href="src/html/categorias.html">
+                    <h2 class="square__title">Buzos</h2>
+                    <img class="square__img" src="src/assets/buzos.png" alt="">
+                </a>
+                <a class="squares-category__square" id="remeras" href="src/html/categorias.html">
+                    <h2 class="square__title">Remeras</h2>
+                    <img class="square__img" src="src/assets/remeras.jpg" alt="">
+                </a>
+                <a class="squares-category__square" id="pantalones" href="src/html/categorias.html">
+                    <h2 class="square__title">Pantalones</h2>
+                    <img class="square__img" src="src/assets/pantalones.webp" alt="">
+                </a>
+                <a class="squares-category__square" id="zapatillas" href="src/html/categorias.html">
+                    <h2 class="square__title">Zapatillas</h2>
+                    <img class="square__img" src="src/assets/zapatillas.webp" alt="">
+                </a>
+            </article>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer__up box-info">
+            <div class="socialmedia">
+                <h3 class="socialmedia__title">Contactanos en nuestras redes</h3>
+                <a class="fa-brands fa-instagram" href=""></a>
+                <a class="fa-brands fa-facebook" href=""></a>
+                <a class="fa-brands fa-youtube" href=""></a>
+            </div>
+            <div class="advertisement">
+                <h3 class="title">Creador del Proyecto</h3>
+                <a class="fa-brands fa-github"></a>
+                <a class="fa-brands fa-linkedin"></a>
+                <a class="fa-brands fa-twitter"></a>
+                <a class="fa-brands fa-telegram"></a>
+                <a class="fa-brands fa-twitch"></a>
+            </div> 
+        </div>
+        <div class="footer__down">
+            <p class="copy">&copy; copyright 2023 - Alvaro Estanislao Figueroa</p>
+        </div>
+    </footer>
+  </div>
+
+    <script src="src/js/producto.js"></script>
+    <script src="src/js/main.js"></script>
+    <script src="https://kit.fontawesome.com/a3f24501bf.js" crossorigin="anonymous"></script>
+</body>
+</html>
