@@ -1,13 +1,11 @@
 //recuperar etiquetas de html
-const carrito = []
+const carrito = JSON.parse(localStorage.getItem('carrito')) || []
+console.log(carrito)
 const catalogo = JSON.parse(localStorage.getItem('catalogo'))
 console.log(catalogo)
-localStorage.setItem('carrito', [])
-const carritoEnLS = localStorage.getItem('carrito')
-carritoEnLS ? carrito = carritoEnLS : carrito = []
 const container = document.getElementById('product-render')
 //mostrar todos los productos
-renderizarProductos(productosArray, container)
+renderizarProductos(catalogo, container)
 
 //recuperar etiquetas de html
 const searchBar = document.getElementById('sea')
@@ -64,7 +62,7 @@ function renderizarProductos(arrayOfProduct, container)
 //busqueda del buscador
 function filterProductSearchBar()
 {
-    let arrrayFiltered = productosArray.filter(({tipo})=>tipo.includes(searchBar.value.toLowerCase()))
+    let arrrayFiltered = catalogo.filter(({tipo})=>tipo.includes(searchBar.value.toLowerCase()))
     actualizarProductos(arrrayFiltered, container)
 }
 
@@ -72,9 +70,9 @@ function filterProductSearchBar()
 function filtrar(event) {
     let tipoInput = event.target.value
     if(tipoInput === 'categorias'){
-        actualizarProductos(productosArray, container)
+        actualizarProductos(catalogo, container)
     } else {
-        let arrayFiltrado = productosArray.filter(({tipo})=>tipo === tipoInput)
+        let arrayFiltrado = catalogo.filter(({tipo})=>tipo === tipoInput)
         actualizarProductos(arrayFiltrado, container)
     }
 }
@@ -89,7 +87,7 @@ function actualizarProductos(array, cont)
 //agregar producto al carrito
 function agregarCarrito(event){
     let botonID = event.target.id
-    let productoBuscado = productosArray.find(({id})=>id === Number(botonID))
+    let productoBuscado = catalogo.find(({id})=>id === Number(botonID))
     let posicionProducto = carrito.findIndex(({id})=>id === productoBuscado.id)
 
     if (posicionProducto != -1) {
@@ -99,8 +97,6 @@ function agregarCarrito(event){
         console.log(carrito)
         actualizarCarrito()
         renderizarCarrito(carrito, containerCarrito)
-        countProducts.innerText = contadorProductos(carrito)
-        totalPrice.innerText = `$${compraTotal(carrito)}`
         localStorage.setItem('carrito', JSON.stringify(carrito))
     } else {
         carrito.push({
@@ -112,9 +108,7 @@ function agregarCarrito(event){
             stock: productoBuscado.stock - 1,
             unidades: 1      
         })
-        countProducts.innerText = contadorProductos(carrito)
         renderizarCarrito(carrito, containerCarrito)
-        totalPrice.innerText = `$${compraTotal(carrito)}`
         localStorage.setItem('carrito', JSON.stringify(carrito))
     }
 }
@@ -127,8 +121,9 @@ function actualizarCarrito() {
 //renderizar carrito
 function renderizarCarrito(arrayOfProduct, container) 
 {
-    console.log(arrayOfProduct)
     actualizarCarrito()
+    totalPrice.innerText = `$${compraTotal(carrito)}`
+    countProducts.innerText = contadorProductos(carrito)
     arrayOfProduct.forEach(({imagen, nombre, precioUnidad, unidades}) => {
         let productcard = document.createElement('div')
         productcard.className = 'card--shopcart'
@@ -152,6 +147,7 @@ function vaciarCarrito() {
     actualizarCarrito()
     countProducts.innerText = contadorProductos(carrito)
     totalPrice.innerText = `$${compraTotal(carrito)}`
+    localStorage.removeItem('carrito')
 }
 
 //contador del carrito
@@ -165,3 +161,5 @@ function compraTotal(array)
 {
     return array.reduce((acumulador, {subtotal})=>{return acumulador + subtotal},0) 
 }
+
+renderizarCarrito(carrito, containerCarrito)
