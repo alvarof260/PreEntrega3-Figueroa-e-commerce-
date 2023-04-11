@@ -10,7 +10,7 @@
 <body>
   <div class="site-wrap">
     <!-- header con navbar-->
-    <header>
+    <header class="header" id="nav">
         <nav class="navbar">
             <!--div parte izquierda-->
             <div class="navbar-left">
@@ -37,18 +37,42 @@
             </div>
             <!--div parte derecha-->
             <div class="navbar__navbar-right navbar-right">
-                <a class="fa-solid fa-user navbar-right__icon flip-diagonal-1-tr"></a>
+                <button class="navbar-right__btn">Inicia sesion <a class="fa-solid fa-user"></a></button>
                 <a class="fa-solid fa-heart navbar-right__icon flip-diagonal-1-tr"></a>
                 <div class="navbar-right__cart">
-                    <a class="fa-solid fa-cart-shopping navbar-right__icon"></a>
+                    <a class="fa-solid fa-cart-shopping navbar-right__icon" id="shopCart"></a>
                     <div class="navbar-right__noti flip-diagonal-1-tr">
-                        <p class="noti__text">0</p>
+                        <p class="noti__text" id="count">0</p>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
     <main>
+        <section class="container-products">
+            <article class="box-cart" id="shopCartDiv-index">
+                <span class="btn-xmark" id="x-mark"><i class="fa-solid fa-xmark"></i></span>
+                <div class="header--shopcart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <h3 class="header__title--shopcart">Carrito de compras</h3>
+                </div>
+                <div class="render-cart-product" id="render-carrito">
+
+                </div>
+                <div class="buttons-cart">
+                    <button id="deleteAllIndex" class="buttons-cart__delete">
+                        vaciar carrito <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div class="buttons-cart__right">
+                        <div class="total-price">
+                            <p class="total-price__text" id="totalPriceIndex">$0</p>
+                        </div>
+                        <button id="buyNow" class="total-price__buyNow">
+                            Comprar ahora
+                        </button>
+                    </div>
+                </div>
+            </article>
         <section class="wrap">
             <div class="slider">
                 <div class="slides">
@@ -119,11 +143,11 @@
             </div>
             <div class="advertisement">
                 <h3 class="title">Creador del Proyecto</h3>
-                <a class="fa-brands fa-github"></a>
-                <a class="fa-brands fa-linkedin"></a>
-                <a class="fa-brands fa-twitter"></a>
-                <a class="fa-brands fa-telegram"></a>
-                <a class="fa-brands fa-twitch"></a>
+                <a class="fa-brands fa-github" href=""></a>
+                <a class="fa-brands fa-linkedin" href=""></a>
+                <a class="fa-brands fa-twitter" href=""></a>
+                <a class="fa-brands fa-telegram" href=""></a>
+                <a class="fa-brands fa-twitch" href=""></a>
             </div> 
         </div>
         <div class="footer__down">

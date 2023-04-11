@@ -1,6 +1,6 @@
 .navbar-transparent{
-    background-color: rgba(240, 241, 240, 0.4);
-    backdrop-filter: blur(10px);
+    background-color: rgba(192, 190, 190, 0.5);
+    backdrop-filter: blur(5px);
     transition: all .5s 0s ease-in-out;
     position: sticky;
     top: 0;
@@ -10,19 +10,21 @@
     position: sticky;
     top: 0;
     z-index: 9997;
+    margin: 0 -50px;
+    padding: 5px 150px;
+    border-bottom: 2px solid $white-gray;
 }
-
-.navbar{
-    height: 50px;
-    margin-top: 15px;
+@include desktop{
+    .navbar{
+    width: 100%;
     display: flex;
     flex-flow: row nowrap;
-    justify-content:center;
+    justify-content: space-evenly;
     align-items: center;
     .navbar-left{
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 30px;
         flex-grow: 1;
         .navbar-left__logo{
             background-image: linear-gradient(160deg, #0093E9 0%, #0767e6 100%);
@@ -39,57 +41,61 @@
         .nav-list{
             display: flex;
             flex-flow: row nowrap;
-            gap: 40px;
+            gap: 25px;
             .nav-item{
                 list-style: none;
                 .nav-link{
+                    padding: .5px 5px;
                     font-family: $font-primary;
                     font-size: $paragraph;
                     font-weight: 400;
                     color: $black-gray;
                     text-decoration: none;
-                    transition: all .3s 0s ease-in-out;
+                    transition: all .2s 0s ease-in-out;
                     &:hover{
                         color: $blue;
                     }
                 }
             }
             .nav-item-anotherlist{
-                transition: all .3s 0s ease-in-out;
+                transition: all .2s 0s ease-in-out;
+                &:hover{
+                    background-color: $white-gray;
+                    border-radius: 5px;
+                }
                 &:hover{
                     .nav-list--inside{
                         display: block;
                     }
                     .fa-chevron-down{
+                        transition: all .2s 0s ease-in-out;
                         transform: rotate(-180deg);
                     }
                 }
                 .nav-link>span{
                     padding-right: 5px;
-                    transition: all .3s 0s ease-in-out;
                 }
                 .nav-link>i{
-                    font-size: 10px;
-                    transition: all .3s 0s ease-in-out;
+                    font-size: .65rem;
                 }
                 .nav-list--inside{
                     position: fixed;
-                    left: 305px;
                     display: none;
+                    margin-top: 5px;
+                    margin-left: -5px;
                     background-color: $white-gray;
                     backdrop-filter: blur(45px);
-                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
                     border-radius: 10px;
-                    width: 130px;
-                    padding: 15px;
+                    padding: 5px;
                     transition: all 1s 0s ease-in;
                     .nav-item--inside{
                         text-align: center;
-                        padding: 5px 0;
+                        padding: 4px;
                     }
                     .nav-link--inside{
                         &:hover{
-                            color: $black-gray-placeholder;
+                            color: $blue;
+                            background-color: transparent;
                         }
                     }
                 }
@@ -99,7 +105,7 @@
     .navbar-center{
         position: absolute;
         .navbar-center__bar-search{
-            width: 550px;
+            width: 300px;
             height: 40px;
             border: none;
             padding: 0 10px;
@@ -108,7 +114,7 @@
             color: $black-gray;
             font-family: $font-primary;
             font-weight: 700;
-            font-size: 16px;
+            font-size: .85rem;
             letter-spacing: .5px;
             &::placeholder{
                 color: $black-gray-placeholder;
@@ -134,10 +140,27 @@
         flex-flow: row nowrap;
         justify-content: flex-end;
         align-items: center;
-        margin-right: 50px;
         gap: 30px;
         flex-grow: 1;
-        .navbar-right__icon{
+        &__btn{
+            @include sizes(140px, 40px, 10px);
+            font-family: $font-primary;
+            font-size: $paragraph;
+            font-weight: 400;
+            line-height: 1.25;
+            outline: none;
+            border: 2px solid black;
+            background-color: $black-gray;
+            color: $white;
+            text-align: center;
+            cursor: pointer;
+            transition: all .4s 0s ease-in-out;
+            &:hover{
+                background-color: $white;
+                color: $black-gray;
+            }
+        }
+        &__icon{
             font-size: 20px;
             color: $black-gray;
             &:hover{
@@ -146,12 +169,15 @@
                 cursor: pointer;
             }
         }
-        .navbar-right__cart{
+        &__cart{
             display: flex;
             flex-flow: row nowrap;
             gap: 5px;
             align-items: center;
             .navbar-right__noti{
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 width: 25px;
                 height: 25px;
                 background-color: $black-gray;
@@ -159,7 +185,6 @@
                 .noti__text{
                     color: $white;
                     text-align: center;
-                    padding: 4px 0;
                     font-family: $font-primary;
                     font-size: $paragraph;
                     font-weight: 700;
@@ -167,4 +192,5 @@
             }
         }
     }
+}
 }
