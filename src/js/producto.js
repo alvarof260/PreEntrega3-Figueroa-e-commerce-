@@ -30,5 +30,3 @@ const productosArray = [
     new Producto(14, 'Jordan 4 Retro', 'jordan4retro.jpg', false, 39000, 'zapatillas',4, false),
     new Producto(15, 'Nike Dunk High Retro', 'nikedunk.jpg', false, 25900, 'zapatillas',10, true)
 ]
-localStorage.setItem('catalogo',JSON.stringify(productosArray))
-localStorage.setItem('carrito', JSON.stringify([]))
