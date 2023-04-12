@@ -1,8 +1,5 @@
 //recuperar los localstorage
 const carrito = JSON.parse(localStorage.getItem('carrito')) || []
-console.log(carrito)
-const catalogo = JSON.parse(localStorage.getItem('catalogo'))
-console.log(catalogo)
 
 //mostrar los productos filtrado
 const contenedorRecommend = document.getElementById('reco') //contenedor para mostrar productos recomendados
@@ -14,7 +11,6 @@ const searchBar = document.getElementById('sea')
 const searchBtn = document.getElementById('btn-search')
 const containerCarrito = document.getElementById('render-carrito')
 const botonesCarrito = document.querySelectorAll('.box-text__btn')
-console.log(botonesCarrito)
 const iconShopCart = document.getElementById('shopCart')
 const containerShopCart = document.getElementById('shopCartDiv-index')
 const iconXMark = document.getElementById('x-mark')
@@ -62,21 +58,20 @@ function renderizarCard(contenedor, arrayConProductos)
 //busqueda del buscador
 function filterProductSearchBar()
 {
-    let arrrayFiltered = catalogo.filter(({tipo})=>tipo.includes(searchBar.value.toLowerCase()))
+    let arrrayFiltered = productosArray.filter(({tipo})=>tipo.includes(searchBar.value.toLowerCase()))
     actualizarProductos(arrrayFiltered, container)
 }
 
 //agregar al carrito
 function agregarCarrito(event){
     let botonID = event.target.id
-    let productoBuscado = catalogo.find(({id})=>id === Number(botonID))
+    let productoBuscado = productosArray.find(({id})=>id === Number(botonID))
     let posicionProducto = carrito.findIndex(({id})=>id === productoBuscado.id)
 
     if (posicionProducto != -1) {
         carrito[posicionProducto].unidades++
         carrito[posicionProducto].stock = carrito[posicionProducto].stock - 1
         carrito[posicionProducto].subtotal = carrito[posicionProducto].precioUnidad * carrito[posicionProducto].unidades 
-        console.log(carrito)
         actualizarCarrito()
         renderizarCarrito(carrito, containerCarrito)
         localStorage.setItem('carrito', JSON.stringify(carrito))

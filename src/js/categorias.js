@@ -1,11 +1,9 @@
 //recuperar etiquetas de html
 const carrito = JSON.parse(localStorage.getItem('carrito')) || []
-console.log(carrito)
-const catalogo = JSON.parse(localStorage.getItem('catalogo'))
-console.log(catalogo)
+
 const container = document.getElementById('product-render')
 //mostrar todos los productos
-renderizarProductos(catalogo, container)
+renderizarProductos(productosArray, container)
 
 //recuperar etiquetas de html
 const searchBar = document.getElementById('sea')
@@ -25,7 +23,6 @@ const navbar = document.getElementById('nav')
 searchBar.addEventListener('input',filterProductSearchBar)
 selectTipos.addEventListener('change',filtrar)
 botonesCarrito.forEach(boton=> boton.addEventListener('click',agregarCarrito))
-console.log(botonesCarrito)
 iconShopCart.addEventListener('click',()=>{
     containerShopCart.classList.add('active')
 } )
@@ -62,7 +59,7 @@ function renderizarProductos(arrayOfProduct, container)
 //busqueda del buscador
 function filterProductSearchBar()
 {
-    let arrrayFiltered = catalogo.filter(({tipo})=>tipo.includes(searchBar.value.toLowerCase()))
+    let arrrayFiltered = productosArray.filter(({tipo})=>tipo.includes(searchBar.value.toLowerCase()))
     actualizarProductos(arrrayFiltered, container)
 }
 
@@ -70,9 +67,9 @@ function filterProductSearchBar()
 function filtrar(event) {
     let tipoInput = event.target.value
     if(tipoInput === 'categorias'){
-        actualizarProductos(catalogo, container)
+        actualizarProductos(productosArray, container)
     } else {
-        let arrayFiltrado = catalogo.filter(({tipo})=>tipo === tipoInput)
+        let arrayFiltrado = productosArray.filter(({tipo})=>tipo === tipoInput)
         actualizarProductos(arrayFiltrado, container)
     }
 }
@@ -87,7 +84,7 @@ function actualizarProductos(array, cont)
 //agregar producto al carrito
 function agregarCarrito(event){
     let botonID = event.target.id
-    let productoBuscado = catalogo.find(({id})=>id === Number(botonID))
+    let productoBuscado = productosArray.find(({id})=>id === Number(botonID))
     let posicionProducto = carrito.findIndex(({id})=>id === productoBuscado.id)
 
     if (posicionProducto != -1) {
