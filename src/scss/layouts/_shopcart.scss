@@ -86,12 +86,13 @@
             display: flex;
             flex-flow: row nowrap;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
             .box-text__title--shopcart{
                 @extend .paragraph;
                 font-weight: 700;
                 overflow: hidden;
                 width: 150px;
+                height: 40px;
                 word-break: break-all;
             }
             .box-text__price--shopcart{
@@ -103,7 +104,8 @@
                 display: flex;
                 flex-flow: row nowrap;
                 @extend .paragraph;
-                color: $black-gray; 
+                color: $black-gray;
+                max-width: 25px;
             }
         }
     }

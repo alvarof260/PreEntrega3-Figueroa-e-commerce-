@@ -282,11 +282,12 @@
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
-      gap: 5px; }
+      gap: 8px; }
       .render-cart-product .card--shopcart .card__box-text--shopcart .box-text__title--shopcart {
         font-weight: 700;
         overflow: hidden;
         width: 150px;
+        height: 40px;
         word-break: break-all; }
       .render-cart-product .card--shopcart .card__box-text--shopcart .box-text__price--shopcart {
         color: #DF2935;
@@ -294,7 +295,8 @@
       .render-cart-product .card--shopcart .card__box-text--shopcart .box-text__unites--shopcart {
         display: flex;
         flex-flow: row nowrap;
-        color: #272727; }
+        color: #272727;
+        max-width: 25px; }
 
 .buttons-cart {
   height: 10vh;
@@ -372,7 +374,8 @@
       .footer__up .advertisement .fa-brands {
         color: #f0f1f0;
         margin: 0 10px;
-        font-size: 1.5rem; }
+        font-size: 1.5rem;
+        text-decoration: none; }
   .footer__down {
     text-align: center;
     height: 50px; }
@@ -382,6 +385,10 @@
       font-size: 12px;
       font-weight: 400;
       font-style: italic; }
+
+.alerts-add {
+  background-color: #3772FF;
+  font-family: "Roboto Slab", serif; }
 
 body {
   background-color: #f0f1f0; }

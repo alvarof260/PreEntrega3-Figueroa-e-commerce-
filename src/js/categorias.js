@@ -87,6 +87,17 @@ function agregarCarrito(event){
     let productoBuscado = productosArray.find(({id})=>id === Number(botonID))
     let posicionProducto = carrito.findIndex(({id})=>id === productoBuscado.id)
 
+    Toastify({
+        text: "agregaste un producto",
+        duration: 1500,
+        newWindow: true,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        className: "alert-add",
+      }).showToast();
+
     if (posicionProducto != -1) {
         carrito[posicionProducto].unidades++
         carrito[posicionProducto].stock = carrito[posicionProducto].stock - 1
@@ -121,7 +132,7 @@ function renderizarCarrito(arrayOfProduct, container)
     actualizarCarrito()
     totalPrice.innerText = `$${compraTotal(carrito)}`
     countProducts.innerText = contadorProductos(carrito)
-    arrayOfProduct.forEach(({imagen, nombre, precioUnidad, unidades}) => {
+    arrayOfProduct.forEach(({imagen, nombre, precioUnidad, unidades, id}) => {
         let productcard = document.createElement('div')
         productcard.className = 'card--shopcart'
         productcard.innerHTML += `
