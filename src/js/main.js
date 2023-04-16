@@ -2,34 +2,35 @@
 const carrito = JSON.parse(localStorage.getItem('carrito')) || []
 
 //mostrar los productos filtrado
-const contenedorRecommend = document.getElementById('reco') //contenedor para mostrar productos recomendados
-const productsRecommend = productosArray.filter(({masVendido})=> masVendido === true)//filtrar del array de los productos los productos mas vendidos
+const contenedorRecommend = document.getElementById('reco') 
+const productsRecommend = productosArray.filter(({masVendido})=> masVendido === true)
 renderizarCard(contenedorRecommend, productsRecommend)
 
 //recuperar etiquetas de html
 const searchBar = document.getElementById('sea')
 const searchBtn = document.getElementById('btn-search')
 const containerCarrito = document.getElementById('render-carrito')
-const botonesCarrito = document.querySelectorAll('.box-text__btn')
+const bottonsCarrito = document.querySelectorAll('.box-text__btn')
 const iconShopCart = document.getElementById('shopCart')
 const containerShopCart = document.getElementById('shopCartDiv-index')
 const iconXMark = document.getElementById('x-mark')
-const btnVaciar = document.getElementById('deleteAllIndex')
+const btnDeleteAll = document.getElementById('deleteAllIndex')
 const countProducts = document.getElementById('count')
 const totalPrice = document.getElementById('totalPriceIndex')
 const navbar = document.getElementById('nav')
+const btnBuy = document.getElementById('buyNow') 
 
 //escuchar eventos
 searchBar.addEventListener('input',filterProductSearchBar)
-botonesCarrito.forEach(boton=> boton.addEventListener('click',agregarCarrito))
-console.log(botonesCarrito)
+bottonsCarrito.forEach(boton=> boton.addEventListener('click',agregarCarrito))
 iconShopCart.addEventListener('click',()=>{
     containerShopCart.classList.add('active')
 } )
 iconXMark.addEventListener('click', ()=>{
     containerShopCart.classList.remove('active')
 })
-btnVaciar.addEventListener('click', vaciarCarrito)
+btnDeleteAll.addEventListener('click', vaciarCarrito)
+btnBuy.addEventListener('click', comprar)
 window.addEventListener('scroll',()=>{
     window.scrollY > 50 ? navbar.classList.add('navbar-transparent') : navbar.classList.remove('navbar-transparent')
 })
@@ -68,6 +69,17 @@ function agregarCarrito(event){
     let productoBuscado = productosArray.find(({id})=>id === Number(botonID))
     let posicionProducto = carrito.findIndex(({id})=>id === productoBuscado.id)
 
+    Toastify({
+        text: "agregaste un producto",
+        duration: 1500,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        className: "alert-add",
+      }).showToast();
+
     if (posicionProducto != -1) {
         carrito[posicionProducto].unidades++
         carrito[posicionProducto].stock = carrito[posicionProducto].stock - 1
@@ -101,7 +113,7 @@ function renderizarCarrito(arrayOfProduct, container)
     actualizarCarrito()
     totalPrice.innerText = `$${compraTotal(carrito)}`
     countProducts.innerText = contadorProductos(carrito)
-    arrayOfProduct.forEach(({imagen, nombre, precioUnidad, unidades}) => {
+    arrayOfProduct.forEach(({imagen, nombre, precioUnidad, unidades, id}) => {
         let productcard = document.createElement('div')
         productcard.className = 'card--shopcart'
         productcard.innerHTML += `
@@ -112,19 +124,64 @@ function renderizarCarrito(arrayOfProduct, container)
                 <h3 class=box-text__title--shopcart >${nombre}</h3>
                 <span class=box-text__price--shopcart >$${precioUnidad}</span>
                 <span class=box-text__unites--shopcart>x ${unidades}</span>
+                <button class=box-text__btn--shopcart ><i class="fa-regular fa-trash-can"  id=${id}></i></button>
             </div>
         `
         container.appendChild(productcard)
     });
+    const deleteProduct = document.querySelectorAll('.box-text__btn--shopcart')
+    deleteProduct.forEach((btn)=>btn.addEventListener('click', borrarProducto))
 }
 
 //vaciar carrito
 function vaciarCarrito() {
-    carrito.splice(0, carrito.length)
+   if(carrito.length != 0){
+        Swal.fire({
+            title: 'Estas seguro?',
+            text: `vas a eliminar ${contadorProductos(carrito)} productos`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3772FF',
+            cancelButtonColor: '#DF2935',
+            confirmButtonText: 'Si,quiero vaciar carrito!',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'borrado!',
+                'se logró borrar todo los productos del carrito',
+                'success'
+              )
+            carrito.splice(0, carrito.length)
+            actualizarCarrito()
+            countProducts.innerText = contadorProductos(carrito)
+            totalPrice.innerText = `$${compraTotal(carrito)}`
+            localStorage.removeItem('carrito') 
+            }
+          })
+    } else {
+        Swal.fire('No hay nada para borrar en el carrito de compra')
+    }
+}
+
+//borrar producto en especifico
+function borrarProducto(e){
+    Toastify({
+        text: "eliminaste un producto",
+        duration: 1500,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        className: "alert-delete",
+      }).showToast();
+    let botonID =  e.target.id
+    let posicionProducto = carrito.findIndex(({id})=>id === Number(botonID))
+    carrito.splice(posicionProducto, 1)
     actualizarCarrito()
-    countProducts.innerText = contadorProductos(carrito)
-    totalPrice.innerText = `$${compraTotal(carrito)}`
-    localStorage.removeItem('carrito')
+    renderizarCarrito(carrito, containerCarrito)
+    localStorage.setItem('carrito', JSON.stringify(carrito))
 }
 
 //contador del carrito
@@ -139,4 +196,47 @@ function compraTotal(array)
     return array.reduce((acumulador, {subtotal})=>{return acumulador + subtotal},0) 
 }
 
+//comprar productos del carrito
+function comprar(){
+    if(carrito.length != 0){
+        Swal.fire({
+            title: 'Estas seguro?',
+            text: `precio final es de ${compraTotal(carrito)}, es un total de ${contadorProductos(carrito)} productos`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3772FF',
+            cancelButtonColor: '#DF2935',
+            confirmButtonText: 'Si,quiero comprar todo!',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'compra con exito!',
+                'se logró comprar todo los productos del carrito',
+                'success'
+              )
+            carrito.splice(0, carrito.length)
+            actualizarCarrito()
+            countProducts.innerText = contadorProductos(carrito)
+            totalPrice.innerText = `$${compraTotal(carrito)}`
+            localStorage.removeItem('carrito') 
+            }
+          })
+    } else{
+        Swal.fire('No hay nada para comprar en el carrito de compra')
+    }
+}
+
 renderizarCarrito(carrito, containerCarrito)
+
+//slider
+
+let countSlider = 1
+setInterval(()=>{
+    let boton = document.getElementById('r' + countSlider) 
+    boton.checked = true
+    countSlider++
+    if (countSlider > 3) {
+        countSlider = 1
+    }
+}, 5000)
