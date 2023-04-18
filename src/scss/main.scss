@@ -196,7 +196,7 @@ body{
 
 .card{
     background-color: $white;
-    @include sizes(250px,400px, 10px);
+    @include sizes(250px,380px, 10px);
     box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
     transition: all .5s 0s ease-in;
     &:hover{
@@ -236,14 +236,29 @@ body{
             line-height: 3;
             letter-spacing: 1px;
         }
-        .box-text__btn{
-            @extend .buttons;
-            @include sizes(100%,40px, 10px);
-            background-color: $white-gray;
-            color: $black-gray;
-            &:hover{
-                background-color: $blue;
-                color:$white;
+        .box-text__buttons{
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 5px;
+            .buttons__btn{
+                @extend .buttons;
+                @include sizes(80%,40px, 10px);
+                background-color: $white-gray;
+                color: $black-gray;
+                &:hover{
+                    background-color: $blue;
+                    color:$white;
+                }
+            }
+            .buttons__btn-fav{
+                @extend .buttons;
+                @include sizes(20%,40px, 10px);
+                background-color: $white-gray;
+                color: $black-gray;
+                &:hover{
+                    background-color: $red;
+                    color:$white;
+                }
             }
         }
     }

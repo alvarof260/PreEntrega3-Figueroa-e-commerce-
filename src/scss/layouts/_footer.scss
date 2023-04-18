@@ -1,57 +1,57 @@
-.footer{
-    background-color: $black-gray;
-    height: 250px;
+.footer {
+  background-color: $black-gray;
+  height: 250px;
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: 10px 10px 0 0;
+  &__up {
+    height: 200px;
     display: flex;
-    flex-flow: column nowrap;
-    border-radius: 10px 10px 0 0;
-    &__up{
-        height: 200px;
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        justify-content: space-around;
-        .socialmedia{
-            text-align: center;
-            line-height: 2.5;
-            &__title{
-                font-family: $font-primary;
-                font-size: $card-title;
-                font-weight: 400;
-                color: $white;
-            }
-            .fa-brands{
-                color: $white;
-                font-size: $subtitle;
-                text-decoration: none;
-                margin: 0 10px;
-            }
-        }
-        .advertisement{
-            text-align: center;
-            line-height: 2.5;
-            .title{
-                font-family: $font-primary;
-                font-size: $card-title;
-                font-weight: 400;
-                color: $white;
-            }
-            .fa-brands{
-                color: $white;
-                margin: 0 10px;
-                font-size: $subtitle;
-                text-decoration: none;
-            }
-        }
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+    .socialmedia {
+      text-align: center;
+      line-height: 2.5;
+      &__title {
+        font-family: $font-primary;
+        font-size: $card-title;
+        font-weight: 400;
+        color: $white;
+      }
+      .fa-brands {
+        color: $white;
+        font-size: $subtitle;
+        text-decoration: none;
+        margin: 0 10px;
+      }
     }
-    &__down{
-        text-align: center;
-        height: 50px;
-        .copy{
-            color: $white;
-            font-family: $font-primary;
-            font-size: 12px;
-            font-weight: 400;
-            font-style: italic;
-        }
+    .advertisement {
+      text-align: center;
+      line-height: 2.5;
+      .title {
+        font-family: $font-primary;
+        font-size: $card-title;
+        font-weight: 400;
+        color: $white;
+      }
+      .fa-brands {
+        color: $white;
+        margin: 0 10px;
+        font-size: $subtitle;
+        text-decoration: none;
+      }
     }
+  }
+  &__down {
+    text-align: center;
+    height: 50px;
+    .copy {
+      color: $white;
+      font-family: $font-primary;
+      font-size: 12px;
+      font-weight: 400;
+      font-style: italic;
+    }
+  }
 }
