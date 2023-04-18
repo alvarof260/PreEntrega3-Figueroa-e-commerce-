@@ -1,16 +1,13 @@
 //recuperar etiquetas de html
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 const favs = JSON.parse(localStorage.getItem("favs")) || [];
-//mostrar todos los productos
-const container = document.getElementById("product-render");
-renderizarProductos(productosArray, container);
+console.log(favs)
 //recuperar etiquetas de html
-const searchBar = document.getElementById("sea");
-const searchBtn = document.getElementById("btn-search");
-const selectTipos = document.getElementById("tipo");
+
 const containerCarrito = document.getElementById("render-carrito");
-const bottonsCarrito = document.querySelectorAll(".buttons__btn");
-const bottonsFavs = document.querySelectorAll(".buttons__btn-fav");
+const divFavs = document.getElementById("render-favs");
+renderizarFavoritos(favs, divFavs);
+const bottonsCarrito = document.querySelectorAll(".item__buttons");
 const iconShopCart = document.getElementById("shopCart");
 const containerShopCart = document.getElementById("shopCartDiv");
 const iconXMark = document.getElementById("x-mark");
@@ -20,14 +17,9 @@ const totalPrice = document.getElementById("totalPrice");
 const navbar = document.getElementById("nav");
 const btnBuy = document.getElementById("buyNow");
 
-//escuchar eventos
-searchBar.addEventListener("input", filterProductSearchBar);
-selectTipos.addEventListener("change", filtrar);
+//
 bottonsCarrito.forEach((boton) =>
   boton.addEventListener("click", agregarCarrito)
-);
-bottonsFavs.forEach((boton) =>
-  boton.addEventListener("click", agregarFavoritos)
 );
 iconShopCart.addEventListener("click", () => {
   containerShopCart.classList.add("active");
@@ -43,52 +35,25 @@ window.addEventListener("scroll", () => {
     : navbar.classList.remove("navbar-transparent");
 });
 
-//renderizar los productos
-function renderizarProductos(arrayOfProduct, container) {
-  arrayOfProduct.forEach(({ imagen, nombre, precio, id }) => {
+function renderizarFavoritos(array, div) {
+  array.forEach(({ imagen, nombre, precio, id }) => {
     let productcard = document.createElement("div");
-    productcard.className = "card";
+    productcard.className = "item";
     productcard.innerHTML += `
-            <div class=card__box-img>
-                <img class=box-img__image src=../assets/products/${imagen} alt= >
-            </div>
-            <div class=card__box-text>
-                <h3 class=box-text__title>${nombre}</h3>
-                <span class=box-text__price>$${precio}</span>
-                <br>
-                <div class=box-text__buttons>
-                    <button class=buttons__btn id=${id}>Agregar al Carrito</button>
-                    <button class=buttons__btn-fav data-id=${id}><i data-id=${id} class="fa-regular fa-heart"></i></button>
+                <button class=item__delete ><i class="fa-solid fa-xmark"  id=${id}></i></button>
+                <div class="item__box-image box-image">
+                    <img class=box-image__image src=../assets/products/${imagen} alt= >
                 </div>
-            </div>
-        `;
-    container.appendChild(productcard);
+                <h3 class=item__name >${nombre}</h3>
+                <span class=item__price >$${precio}</span>
+                <button class=item__buttons id=${id}>Agregar al Carrito</button>
+            `;
+    div.appendChild(productcard);
   });
-}
-
-//busqueda del buscador
-function filterProductSearchBar() {
-  let arrrayFiltered = productosArray.filter(({ tipo }) =>
-    tipo.includes(searchBar.value.toLowerCase())
+  const deleteFavs = document.querySelectorAll(".item__delete");
+  deleteFavs.forEach((boton) =>
+    boton.addEventListener("click", borrarFavoritos)
   );
-  actualizarProductos(arrrayFiltered, container);
-}
-
-//filtrar por categoria
-function filtrar(event) {
-  let tipoInput = event.target.value;
-  if (tipoInput === "categorias") {
-    actualizarProductos(productosArray, container);
-  } else {
-    let arrayFiltrado = productosArray.filter(({ tipo }) => tipo === tipoInput);
-    actualizarProductos(arrayFiltrado, container);
-  }
-}
-
-//actualizar los productos
-function actualizarProductos(array, cont) {
-  container.innerHTML = "";
-  renderizarProductos(array, cont);
 }
 
 //agregar producto al carrito
@@ -98,6 +63,7 @@ function agregarCarrito(event) {
   let posicionProducto = carrito.findIndex(
     ({ id }) => id === productoBuscado.id
   );
+
   Toastify({
     text: "agregaste un producto",
     duration: 1500,
@@ -130,32 +96,11 @@ function agregarCarrito(event) {
     localStorage.setItem("carrito", JSON.stringify(carrito));
   }
 }
-//agregar favoritos
-function agregarFavoritos(e) {
-  let botonID = e.target.attributes["data-id"].value;
-  let productoBuscado = productosArray.find(({ id }) => id === Number(botonID));
-  let productoPosicion = favs.findIndex(({id}) => id === productoBuscado.id)
-  if (productoPosicion === -1) {
-    Toastify({
-      text: "agregaste a favoritos",
-      duration: 1500,
-      newWindow: true,
-      close: true,
-      gravity: "top", // `top` or `bottom`
-      position: "center", // `left`, `center` or `right`
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      className: "alert-favs",
-    }).showToast();
-    favs.push(productoBuscado)
-    localStorage.setItem("favs", JSON.stringify(favs))
-  }
-}
 
 //actualizar carrito
 function actualizarCarrito() {
   containerCarrito.innerHTML = "";
 }
-
 //renderizar carrito
 function renderizarCarrito(arrayOfProduct, container) {
   actualizarCarrito();
@@ -165,20 +110,18 @@ function renderizarCarrito(arrayOfProduct, container) {
     let productcard = document.createElement("div");
     productcard.className = "card--shopcart";
     productcard.innerHTML += `
-            <div class=card__box-img--shopcart >
-                <img class=box-img__image--shopcart src=../assets/products/${imagen} alt= >
-            </div>
-            <div class=card__box-text--shopcart >
-                <h3 class=box-text__title--shopcart >${nombre}</h3>
-                <span class=box-text__price--shopcart >$${precioUnidad}</span>
-                <span class=box-text__unites--shopcart>x ${unidades}</span>
-                <button class=box-text__btn--shopcart ><i class="fa-regular fa-trash-can"  id=${id}></i></button>
-            </div>
-        `;
+              <div class=card__box-img--shopcart >
+                  <img class=box-img__image--shopcart src=../assets/products/${imagen} alt= >
+              </div>
+              <div class=card__box-text--shopcart >
+                  <h3 class=box-text__title--shopcart >${nombre}</h3>
+                  <span class=box-text__price--shopcart >$${precioUnidad}</span>
+                  <span class=box-text__unites--shopcart>x ${unidades}</span>
+                  <button class=box-text__btn--shopcart ><i class="fa-regular fa-trash-can"  id=${id}></i></button>
+              </div>
+          `;
     container.appendChild(productcard);
   });
-  const deleteProduct = document.querySelectorAll(".box-text__btn--shopcart");
-  deleteProduct.forEach((btn) => btn.addEventListener("click", borrarProducto));
 }
 
 //vaciar carrito
@@ -229,6 +172,19 @@ function borrarProducto(e) {
   actualizarCarrito();
   renderizarCarrito(carrito, containerCarrito);
   localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+function actualizarFavoritos() {
+  divFavs.innerHTML = "";
+}
+
+function borrarFavoritos(e) {
+  let botonID = e.target.id;
+  let posicionProducto = favs.findIndex(({ id }) => id === Number(botonID));
+  favs.splice(posicionProducto, 1);
+  actualizarFavoritos();
+  renderizarFavoritos(favs, divFavs);
+  localStorage.setItem("favs", JSON.stringify(favs));
 }
 
 //contador del carrito

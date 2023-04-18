@@ -33,14 +33,14 @@
   font-weight: 400;
   line-height: 1.25; }
 
-.buttons, .buttons-cart__delete, .buttons-cart__right .total-price__buyNow, .card__box-text .box-text__buttons .buttons__btn, .card__box-text .box-text__buttons .buttons__btn-fav {
+.buttons, .buttons-cart__delete, .buttons-cart__right .total-price__buyNow, .item__buttons, .card__box-text .box-text__buttons .buttons__btn, .card__box-text .box-text__buttons .buttons__btn-fav {
   outline: none;
   border: none;
   font-family: "Roboto Slab", serif;
   font-size: 1rem;
   font-weight: 400;
   transition: all .5s 0s ease; }
-  .buttons:hover, .buttons-cart__delete:hover, .buttons-cart__right .total-price__buyNow:hover, .card__box-text .box-text__buttons .buttons__btn:hover, .card__box-text .box-text__buttons .buttons__btn-fav:hover {
+  .buttons:hover, .buttons-cart__delete:hover, .buttons-cart__right .total-price__buyNow:hover, .item__buttons:hover, .card__box-text .box-text__buttons .buttons__btn:hover, .card__box-text .box-text__buttons .buttons__btn-fav:hover {
     cursor: pointer; }
 
 .navbar-transparent {
@@ -180,7 +180,8 @@
           color: #272727; }
       .navbar .navbar-right__icon {
         font-size: 20px;
-        color: #272727; }
+        color: #272727;
+        text-decoration: none; }
         .navbar .navbar-right__icon:hover {
           -webkit-animation: pulsate-bck 0.5s ease-in-out 1 both;
           animation: pulsate-bck 0.5s ease-in-out 1 both;
@@ -393,6 +394,70 @@
       font-size: 12px;
       font-weight: 400;
       font-style: italic; }
+
+.main--favs {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 150px;
+  min-height: 70vh; }
+
+.title, .header--shopcart .header__title--shopcart {
+  margin-top: 60px; }
+
+.list-favs {
+  background-color: #e4e4e471;
+  border-radius: 10px;
+  margin-bottom: 250px; }
+
+.item {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 250px;
+  width: 1200px;
+  padding: 10px 25px; }
+  .item__delete {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #080708;
+    font-family: "Roboto Slab", serif;
+    font-size: 1rem; }
+    .item__delete:hover {
+      cursor: pointer; }
+  .item__box-image {
+    height: 100%;
+    width: 200px; }
+    .item__box-image .box-image__image {
+      border-radius: 10px;
+      width: 100%; }
+  .item__name {
+    font-family: "Roboto Slab", serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #272727;
+    width: 200px;
+    overflow: hidden; }
+  .item__price {
+    font-family: "Roboto Slab", serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #DF2935;
+    line-height: 3;
+    letter-spacing: 1px; }
+  .item__buttons {
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #e4e4e471;
+    color: #272727; }
+    .item__buttons:hover {
+      background-color: #3772FF;
+      color: #f0f1f0; }
 
 .alerts-add {
   background-color: #3772FF;

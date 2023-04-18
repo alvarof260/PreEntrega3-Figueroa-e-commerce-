@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <title>Plug - Categorias</title>
+    <title>Plug - Favoritos</title>
 </head>
 <body>
     <div class="site-wrap">
@@ -46,55 +46,35 @@
                 </div>
             </nav>
         </header>
-        <main>
-            <section class="container-products">
-                <article class="box-cart" id="shopCartDiv">
-                    <span class="btn-xmark" id="x-mark"><i class="fa-solid fa-xmark"></i></span>
-                    <div class="header--shopcart">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        <h3 class="header__title--shopcart">Carrito de compras</h3>
-                    </div>
-                    <div class="render-cart-product" id="render-carrito">
+        <main class="main--favs">
+            <article class="box-cart" id="shopCartDiv">
+                <span class="btn-xmark" id="x-mark"><i class="fa-solid fa-xmark"></i></span>
+                <div class="header--shopcart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <h3 class="header__title--shopcart">Carrito de compras</h3>
+                </div>
+                <div class="render-cart-product" id="render-carrito">
 
-                    </div>
-                    <div class="buttons-cart">
-                        <button id="deleteAll" class="buttons-cart__delete">
-                            vaciar carrito <i class="fa-solid fa-trash"></i>
-                        </button>
-                        <div class="buttons-cart__right">
-                            <div class="total-price">
-                                <p class="total-price__text" id="totalPrice">$0</p>
-                            </div>
-                            <button id="buyNow" class="total-price__buyNow">
-                                Comprar ahora
-                            </button>
+                </div>
+                <div class="buttons-cart">
+                    <button id="deleteAll" class="buttons-cart__delete">
+                        vaciar carrito <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div class="buttons-cart__right">
+                        <div class="total-price">
+                            <p class="total-price__text" id="totalPrice">$0</p>
                         </div>
+                        <button id="buyNow" class="total-price__buyNow">
+                            Comprar ahora
+                        </button>
                     </div>
-                </article>
-                <article class="render-product">
-                    <h2 class="render-product__title">Todos los productos</h2>
-                    <div class="render-product__input">
-                        <form action="">
-                            <label for="tipo">Categorias:</label>
-                            <select class="select" name="categorias" id="tipo">
-                                <option value="categorias">Categorias</option>
-                                <option value="buzos">Buzos</option>
-                                <option value="remeras">Remeras</option>
-                                <option value="pantalones">Pantalones</option>
-                                <option value="zapatillas">Zapatillas</option>
-                            </select>
-                            <label for=""></label>
-                        </form>
-                    </div>
-                    <div class="render-product__flex" id="product-render">
+                </div>
+            </article>
+            <h1 class="title"><i class="fa-regular fa-heart"></i>Mi Favoritos</h1>
+            <article class="list-favs" id="render-favs">
 
-                    </div>
-                </article>
-            </section>
+            </article>
         </main>
-        <div class="square1"></div>
-        <div class="square1"></div>
-        <div class="square1"></div>
         <footer class="footer">
             <div class="footer__up box-info">
                 <div class="socialmedia">
@@ -121,6 +101,6 @@
     <script src="https://kit.fontawesome.com/a3f24501bf.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/producto.js"></script>
-    <script src="../js/categorias.js"></script>
+    <script src="../js/favoritos.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 //recuperar los localstorage
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+const favs = JSON.parse(localStorage.getItem("favs")) || [];
 
 //mostrar los productos filtrado
 const contenedorRecommend = document.getElementById("reco");
@@ -13,6 +14,7 @@ const searchBar = document.getElementById("sea");
 const searchBtn = document.getElementById("btn-search");
 const containerCarrito = document.getElementById("render-carrito");
 const bottonsCarrito = document.querySelectorAll(".buttons__btn");
+const bottonsFavs = document.querySelectorAll(".buttons__btn-fav");
 const iconShopCart = document.getElementById("shopCart");
 const containerShopCart = document.getElementById("shopCartDiv-index");
 const iconXMark = document.getElementById("x-mark");
@@ -26,6 +28,9 @@ const btnBuy = document.getElementById("buyNow");
 searchBar.addEventListener("input", filterProductSearchBar);
 bottonsCarrito.forEach((boton) =>
   boton.addEventListener("click", agregarCarrito)
+);
+bottonsFavs.forEach((boton) =>
+  boton.addEventListener("click", agregarFavoritos)
 );
 iconShopCart.addEventListener("click", () => {
   containerShopCart.classList.add("active");
@@ -56,7 +61,7 @@ function renderizarCard(contenedor, arrayConProductos) {
                     <br>
                     <div class=box-text__buttons>
                         <button class=buttons__btn id=${id}>Agregar al Carrito</button>
-                        <button class=buttons__btn-fav data-id=${id}><i class="fa-regular fa-heart"></i></button>
+                        <button class=buttons__btn-fav data-id=${id}><i data-id=${id} class="fa-regular fa-heart"></i></button>
                     </div>
                 </div>
             `;
@@ -112,6 +117,27 @@ function agregarCarrito(event) {
     });
     renderizarCarrito(carrito, containerCarrito);
     localStorage.setItem("carrito", JSON.stringify(carrito));
+  }
+}
+
+//agregar favoritos
+function agregarFavoritos(e) {
+  let botonID = e.target.attributes["data-id"].value;
+  let productoBuscado = productosArray.find(({ id }) => id === Number(botonID));
+  let productoPosicion = favs.findIndex(({id}) => id === productoBuscado.id)
+  if (productoPosicion === -1) {
+    Toastify({
+      text: "agregaste a favoritos",
+      duration: 1500,
+      newWindow: true,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "center", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      className: "alert-favs",
+    }).showToast();
+    favs.push(productoBuscado)
+    localStorage.setItem("favs", JSON.stringify(favs))
   }
 }
 
