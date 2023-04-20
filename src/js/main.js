@@ -1,13 +1,21 @@
+fetch("./src/js/productos.json")
+  .then((response) => response.json())
+  .then((data) => {
+    const productos = data
+    const contenedorRecommend = document.getElementById("reco");
+    const productsRecommend = productos.filter(
+      ({ masVendido }) => masVendido === true
+    );
+    renderizarCard(contenedorRecommend, productsRecommend);
+    //filterProductSearchBar(productos)
+
+  });
+
 //recuperar los localstorage
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 const favs = JSON.parse(localStorage.getItem("favs")) || [];
 
 //mostrar los productos filtrado
-const contenedorRecommend = document.getElementById("reco");
-const productsRecommend = productosArray.filter(
-  ({ masVendido }) => masVendido === true
-);
-renderizarCard(contenedorRecommend, productsRecommend);
 
 //recuperar etiquetas de html
 const searchBar = document.getElementById("sea");
@@ -27,7 +35,7 @@ const btnBuy = document.getElementById("buyNow");
 //escuchar eventos
 searchBar.addEventListener("input", filterProductSearchBar);
 bottonsCarrito.forEach((boton) =>
-  boton.addEventListener("click", agregarCarrito)
+  boton.addEventListener("click", agregarCarrito())
 );
 bottonsFavs.forEach((boton) =>
   boton.addEventListener("click", agregarFavoritos)
@@ -70,15 +78,15 @@ function renderizarCard(contenedor, arrayConProductos) {
 }
 
 //busqueda del buscador
-function filterProductSearchBar() {
-  let arrrayFiltered = productosArray.filter(({ tipo }) =>
+function filterProductSearchBar(array) {
+  let arrrayFiltered = array.filter(({ tipo }) =>
     tipo.includes(searchBar.value.toLowerCase())
   );
   actualizarProductos(arrrayFiltered, container);
 }
 
 //agregar al carrito
-function agregarCarrito(event) {
+function agregarCarrito(event, array) {
   let botonID = event.target.id;
   let productoBuscado = productosArray.find(({ id }) => id === Number(botonID));
   let posicionProducto = carrito.findIndex(
@@ -124,7 +132,7 @@ function agregarCarrito(event) {
 function agregarFavoritos(e) {
   let botonID = e.target.attributes["data-id"].value;
   let productoBuscado = productosArray.find(({ id }) => id === Number(botonID));
-  let productoPosicion = favs.findIndex(({id}) => id === productoBuscado.id)
+  let productoPosicion = favs.findIndex(({ id }) => id === productoBuscado.id);
   if (productoPosicion === -1) {
     Toastify({
       text: "agregaste a favoritos",
@@ -136,8 +144,8 @@ function agregarFavoritos(e) {
       stopOnFocus: true, // Prevents dismissing of toast on hover
       className: "alert-favs",
     }).showToast();
-    favs.push(productoBuscado)
-    localStorage.setItem("favs", JSON.stringify(favs))
+    favs.push(productoBuscado);
+    localStorage.setItem("favs", JSON.stringify(favs));
   }
 }
 

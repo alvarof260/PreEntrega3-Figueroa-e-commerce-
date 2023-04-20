@@ -15,7 +15,7 @@
     transform: scale(1.2, 1.2);
     filter: brightness(50%); }
 
-.title, .header--shopcart .header__title--shopcart {
+.title, .header--shopcart .header__title--shopcart, .title--favs {
   font-family: "Roboto Slab", serif;
   font-size: 1.75rem;
   font-weight: 700;
@@ -375,7 +375,7 @@
     .footer__up .advertisement {
       text-align: center;
       line-height: 2.5; }
-      .footer__up .advertisement .title, .footer__up .advertisement .header--shopcart .header__title--shopcart, .header--shopcart .footer__up .advertisement .header__title--shopcart {
+      .footer__up .advertisement .title, .footer__up .advertisement .header--shopcart .header__title--shopcart, .header--shopcart .footer__up .advertisement .header__title--shopcart, .footer__up .advertisement .title--favs {
         font-family: "Roboto Slab", serif;
         font-size: 1.25rem;
         font-weight: 400;
@@ -403,7 +403,7 @@
   gap: 150px;
   min-height: 70vh; }
 
-.title, .header--shopcart .header__title--shopcart {
+.title--favs {
   margin-top: 60px; }
 
 .list-favs {
