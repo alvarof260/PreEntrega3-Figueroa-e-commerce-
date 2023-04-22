@@ -1,17 +1,14 @@
+//recuperar etiquetas de html
+const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+const favs = JSON.parse(localStorage.getItem("favs")) || [];
 fetch("../js/productos.json")
   .then((response) => response.json())
   .then((data) => {
     const productosArray = data;
     //recuperar etiquetas de html
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    const favs = JSON.parse(localStorage.getItem("favs")) || [];
-    console.log(favs);
-    //recuperar etiquetas de html
 
     const containerCarrito = document.getElementById("render-carrito");
     const divFavs = document.getElementById("render-favs");
-    renderizarFavoritos(favs, divFavs);
-    const bottonsCarrito = document.querySelectorAll(".item__buttons");
     const iconShopCart = document.getElementById("shopCart");
     const containerShopCart = document.getElementById("shopCartDiv");
     const iconXMark = document.getElementById("x-mark");
@@ -21,10 +18,9 @@ fetch("../js/productos.json")
     const navbar = document.getElementById("nav");
     const btnBuy = document.getElementById("buyNow");
 
+    renderizarFavoritos(favs);
     //
-    bottonsCarrito.forEach((boton) =>
-      boton.addEventListener("click", agregarCarrito)
-    );
+
     iconShopCart.addEventListener("click", () => {
       containerShopCart.classList.add("active");
     });
@@ -39,7 +35,8 @@ fetch("../js/productos.json")
         : navbar.classList.remove("navbar-transparent");
     });
 
-    function renderizarFavoritos(array, div) {
+    function renderizarFavoritos(array) {
+      actualizarFavoritos();
       array.forEach(({ imagen, nombre, precio, id }) => {
         let productcard = document.createElement("div");
         productcard.className = "item";
@@ -52,8 +49,12 @@ fetch("../js/productos.json")
                 <span class=item__price >$${precio}</span>
                 <button class=item__buttons id=${id}>Agregar al Carrito</button>
             `;
-        div.appendChild(productcard);
+        divFavs.appendChild(productcard);
       });
+      const bottonsCarrito = document.querySelectorAll(".item__buttons");
+      bottonsCarrito.forEach((boton) =>
+        boton.addEventListener("click", agregarCarrito)
+      );
       const deleteFavs = document.querySelectorAll(".item__delete");
       deleteFavs.forEach((boton) =>
         boton.addEventListener("click", borrarFavoritos)
@@ -63,13 +64,12 @@ fetch("../js/productos.json")
     //agregar producto al carrito
     function agregarCarrito(event) {
       let botonID = event.target.id;
-      let productoBuscado = productosArray.find(
-        ({ id }) => id === Number(botonID)
-      );
+      let productoBuscado = productosArray.find(({ id }) => id === Number(botonID));
+      console.log(productoBuscado);
       let posicionProducto = carrito.findIndex(
         ({ id }) => id === productoBuscado.id
       );
-
+      console.log(posicionProducto);
       Toastify({
         text: "agregaste un producto",
         duration: 1500,
@@ -129,6 +129,12 @@ fetch("../js/productos.json")
           `;
           container.appendChild(productcard);
         }
+      );
+      const deleteProduct = document.querySelectorAll(
+        ".box-text__btn--shopcart"
+      );
+      deleteProduct.forEach((btn) =>
+        btn.addEventListener("click", borrarProducto)
       );
     }
 
@@ -192,6 +198,7 @@ fetch("../js/productos.json")
       let botonID = e.target.id;
       let posicionProducto = favs.findIndex(({ id }) => id === Number(botonID));
       favs.splice(posicionProducto, 1);
+      console.log(favs);
       actualizarFavoritos();
       renderizarFavoritos(favs, divFavs);
       localStorage.setItem("favs", JSON.stringify(favs));
