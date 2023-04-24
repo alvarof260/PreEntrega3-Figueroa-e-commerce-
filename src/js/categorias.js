@@ -23,7 +23,7 @@ fetch("../js/productos.json")
       })
     );
     const searchBar = document.getElementById("sea")
-    searchBar.addEventListener("input", filterProductSearchBar(productosArray));
+    searchBar.addEventListener("input", filterProductSearchBar(productosArray, searchBar));
   });
 //recuperar etiquetas de html
 const container = document.getElementById("product-render");
@@ -77,9 +77,9 @@ function renderizarProductos(array) {
 }
 
 //busqueda del buscador
-function filterProductSearchBar(array) {
+function filterProductSearchBar(array, search) {
   let arrrayFiltered = array.filter(({ tipo }) =>
-    tipo.includes(searchBar.value.toLowerCase())
+    tipo.includes(search.value.toLowerCase())
   );
   actualizarProductos(arrrayFiltered, container);
 }
