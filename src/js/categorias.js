@@ -8,9 +8,9 @@ fetch("../js/productos.json")
     renderizarProductos(productosArray);
     const bottonsCarrito = document.querySelectorAll(".buttons__btn");
     bottonsCarrito.forEach((boton) =>
-      boton.addEventListener("click", (e) => {
-        agregarCarrito(e, productosArray);
-      })
+    boton.addEventListener("click", (e) => {
+      agregarCarrito(e, productosArray);
+    })
     );
     const selectTipos = document.getElementById("tipo");
     selectTipos.addEventListener("change", (event) => {
@@ -18,12 +18,16 @@ fetch("../js/productos.json")
     });
     const bottonsFavs = document.querySelectorAll(".buttons__btn-fav");
     bottonsFavs.forEach((boton) =>
-      boton.addEventListener("click", (e) => {
-        agregarFavoritos(e, productosArray);
-      })
+    boton.addEventListener("click", (e) => {
+      agregarFavoritos(e, productosArray);
+    })
     );
     const searchBar = document.getElementById("sea")
-    searchBar.addEventListener("input", filterProductSearchBar(productosArray, searchBar));
+    searchBar.addEventListener("input", (e)=>filterProductSearchBar(e,productosArray, searchBar));
+    const categoriaLi = document.getElementById("category") 
+    categoriaLi.addEventListener("click", (e) => {
+      filtrarNav(e, productosArray)
+    })
   });
 //recuperar etiquetas de html
 const container = document.getElementById("product-render");
@@ -39,6 +43,7 @@ const navbar = document.getElementById("nav");
 const btnBuy = document.getElementById("buyNow");
 
 //escuchar eventos
+
 iconShopCart.addEventListener("click", () => {
   containerShopCart.classList.add("active");
 });
@@ -77,11 +82,17 @@ function renderizarProductos(array) {
 }
 
 //busqueda del buscador
-function filterProductSearchBar(array, search) {
+function filterProductSearchBar(e,array, search) {
+  e.preventDefault();
   let arrrayFiltered = array.filter(({ tipo }) =>
     tipo.includes(search.value.toLowerCase())
   );
   actualizarProductos(arrrayFiltered, container);
+}
+
+function filtrarNav(e, array){
+  let arrayFiltrado = array.filter(({tipo}) => tipo === e.target.id);
+  actualizarProductos(arrayFiltrado, container)
 }
 
 //filtrar por categoria
@@ -100,6 +111,7 @@ function actualizarProductos(array, cont) {
   container.innerHTML = "";
   renderizarProductos(array, cont);
 }
+
 
 //agregar producto al carrito
 function agregarCarrito(e, array) {

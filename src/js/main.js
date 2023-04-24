@@ -80,10 +80,8 @@ function renderizarCard(array) {
 
 //busqueda del buscador
 function filterProductSearchBar() {
-  let arrrayFiltered = productosArray.filter(({ tipo }) =>
-    tipo.includes(searchBar.value.toLowerCase())
-  );
-  actualizarProductos(arrrayFiltered, container);
+  Swal.fire("no se puede filtrar en esta pagina, ve a categorias para poder hacerlo");
+  searchBar.value = ""
 }
 
 //agregar al carrito

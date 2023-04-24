@@ -19,7 +19,10 @@ fetch("../js/productos.json")
     const btnBuy = document.getElementById("buyNow");
 
     renderizarFavoritos(favs);
-    //
+
+    const searchBar = document.getElementById("sea");
+
+    searchBar.addEventListener("input", filterProductSearchBar);
 
     iconShopCart.addEventListener("click", () => {
       containerShopCart.classList.add("active");
@@ -61,10 +64,19 @@ fetch("../js/productos.json")
       );
     }
 
+    function filterProductSearchBar() {
+      Swal.fire(
+        "no se puede filtrar en esta pagina, ve a categorias para poder hacerlo"
+      );
+      searchBar.value = "";
+    }
+
     //agregar producto al carrito
     function agregarCarrito(event) {
       let botonID = event.target.id;
-      let productoBuscado = productosArray.find(({ id }) => id === Number(botonID));
+      let productoBuscado = productosArray.find(
+        ({ id }) => id === Number(botonID)
+      );
       console.log(productoBuscado);
       let posicionProducto = carrito.findIndex(
         ({ id }) => id === productoBuscado.id
