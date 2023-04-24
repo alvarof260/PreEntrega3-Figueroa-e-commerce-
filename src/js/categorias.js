@@ -22,6 +22,7 @@ fetch("../js/productos.json")
         agregarFavoritos(e, productosArray);
       })
     );
+    const searchBar = document.getElementById("sea")
     searchBar.addEventListener("input", filterProductSearchBar(productosArray));
   });
 //recuperar etiquetas de html
