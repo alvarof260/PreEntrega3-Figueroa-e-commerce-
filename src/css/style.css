@@ -60,3 +60,55 @@
   --font-size-xxl: 2rem;
   --font-size-xxxl: 3rem;
 }
+
+.filter{
+  background-image: url('../assets/Filter.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100vw;
+  min-height: 100vh;
+  position: absolute;
+  z-index: -1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 5rem;
+  padding: .75rem 1rem;
+  & .header__logo {
+    width: calc((100%/ 3) - 2rem );
+    text-align: left;
+    font-family: var(--caladea-font);
+    font-size: var(--font-size-xxxl);
+    color: var(--abbey-950);
+  }
+  & .header__icon-user {
+    width: calc((100%/ 3) - 2rem  );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    & svg {
+      background-color: var(--abbey-100);
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+      padding: 0.5rem;
+      color: var(--abbey-400);
+    }
+  }
+  & .header__icon-bar {
+    width: calc((100%/ 3) - 2rem  );
+    display: flex;
+    justify-content: end;
+    & svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      color: var(--abbey-400);
+    }
+  }
+}
