@@ -1,17 +1,22 @@
 {
   "name": "plug",
   "version": "1.0.0",
-  "description": "",
+  "description": "Plug is a store where all major brands of clothing, sneakers and accessories are sold.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-css": "node-sass --include-path scss src/scss/main.scss src/css/style.css",
-    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "node-sass": "^8.0.0",
-    "nodemon": "^2.0.22"
-  }
+  "author": "Alvaro Estanislao Figueroa",
+  "keywords": [
+    "clothing",
+    "sneakers",
+    "accessories",
+    "brands",
+    "ecommerce",
+    "store",
+    "javascript",
+    "html",
+    "css"
+  ],
+  "license": "ISC"
 }
