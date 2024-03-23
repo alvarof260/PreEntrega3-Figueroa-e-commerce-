@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   gsap.set(".section-welcome__title", { y: 100, opacity: 0 });
   gsap.set(".scroll-down", { opacity: 0 });
+  gsap.set(".modal-new--off", { opacity: 0, x: 100 });
 
   const tl = gsap.timeline({ delay: 1 });
   tl.to(".loader__img-ctn", {
@@ -54,6 +55,15 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "power3.inOut",
       },
       "-=0.5"
+    ).to(
+      ".modal-new--off",
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.inOut",
+      },
+      "-=0.5"
     );
 });
 
@@ -68,10 +78,17 @@ const scrollDownAnimation = gsap.to(".scroll-down", {
 
 // Detener la animación cuando se desplace hasta cierta posición
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 100) { // Cambia este valor para ajustar la posición de scroll
+  if (window.scrollY > 60) { // Cambia este valor para ajustar la posición de scroll
     scrollDownAnimation.pause();
+    document.querySelector(".scroll-down").style.opacity = 0;
+  }
+  if (window.scrollY < 60) { // Cambia este valor para ajustar la posición de scroll
+    scrollDownAnimation.play();
+    document.querySelector(".scroll-down").style.opacity = 1;
   }
 });
+
+
 /* //recuperar los localstorage
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 const favs = JSON.parse(localStorage.getItem("favs")) || [];
