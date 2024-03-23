@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  gsap.set(".loader__img-ctn", { y: 800 });
-  gsap.set(".loader-imgs", { x: 800 });
+  const isMobile = window.innerWidth < 768;
+  gsap.set(".loader__img-ctn", { y: isMobile ? 1700 : 800 });
+  gsap.set(".loader-imgs", { x: isMobile ? 0 : 800 });
   gsap.set(".header__logo , .header__icon-user , .header__icon-bar", {
     y: -25,
     opacity: 0,
