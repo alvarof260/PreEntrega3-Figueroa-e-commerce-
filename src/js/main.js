@@ -1,4 +1,77 @@
-//recuperar los localstorage
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.set(".loader__img-ctn", { y: 800 });
+  gsap.set(".loader-imgs", { x: 800 });
+  gsap.set(".header__logo , .header__icon-user , .header__icon-bar", {
+    y: -25,
+    opacity: 0,
+  });
+  gsap.set(".section-welcome__title", { y: 100, opacity: 0 });
+  gsap.set(".scroll-down", { opacity: 0 });
+
+  const tl = gsap.timeline({ delay: 1 });
+  tl.to(".loader__img-ctn", {
+    y: 0,
+    duration: 1.5,
+    stagger: 0.05,
+    ease: "power3.inOut",
+  })
+    .to(
+      ".loader-imgs",
+      {
+        x: 0,
+        duration: 3,
+        ease: "power3.inOut",
+      },
+      "-=2.5"
+    )
+    .to(
+      ".loader__img-ctn:not(.logo)",
+      {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        duration: 1,
+        stagger: 0.1,
+        ease: "power3.inOut",
+      },
+      "-=1"
+    )
+    .to(
+      ".loader",
+      {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        duration: 1,
+        ease: "power3.inOut",
+      },
+      "-=0.5"
+    )
+    .to(
+      ".header__logo , .header__icon-user , .header__icon-bar , .section-welcome__title , .scroll-down",
+      {
+        y: 0,
+        stagger: 0.1,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.inOut",
+      },
+      "-=0.5"
+    );
+});
+
+
+const scrollDownAnimation = gsap.to(".scroll-down", {
+  y: "+=20", // Cambia este valor para ajustar la cantidad de bounce
+  repeat: -1,
+  yoyo: true,
+  duration: 1,
+  ease: "power3.inOut"
+});
+
+// Detener la animación cuando se desplace hasta cierta posición
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 100) { // Cambia este valor para ajustar la posición de scroll
+    scrollDownAnimation.pause();
+  }
+});
+/* //recuperar los localstorage
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 const favs = JSON.parse(localStorage.getItem("favs")) || [];
 
@@ -289,3 +362,4 @@ setInterval(() => {
     countSlider = 1;
   }
 }, 5000);
+ */
