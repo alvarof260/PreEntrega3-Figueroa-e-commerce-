@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("stop-scrolling");
   const isMobile = window.innerWidth < 768;
   gsap.set(".loader__img-ctn", { y: isMobile ? 1700 : 800 });
   gsap.set(".loader-imgs", { x: isMobile ? 0 : 800 });
@@ -10,7 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
   gsap.set(".scroll-down", { opacity: 0 });
   gsap.set(".modal-new--off", { opacity: 0, x: 100 });
 
-  const tl = gsap.timeline({ delay: 1 });
+  const tl = gsap.timeline({
+    delay: 1,
+    onComplete: () => {
+      document.body.classList.remove("stop-scrolling");
+    },
+  });
   tl.to(".loader__img-ctn", {
     y: 0,
     duration: 1.5,
@@ -55,7 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "power3.inOut",
       },
       "-=0.5"
-    ).to(
+    )
+    .to(
       ".modal-new--off",
       {
         x: 0,
@@ -67,27 +74,27 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 });
 
-
 const scrollDownAnimation = gsap.to(".scroll-down", {
   y: "+=20", // Cambia este valor para ajustar la cantidad de bounce
   repeat: -1,
   yoyo: true,
   duration: 1,
-  ease: "power3.inOut"
+  ease: "power3.inOut",
 });
 
 // Detener la animación cuando se desplace hasta cierta posición
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 60) { // Cambia este valor para ajustar la posición de scroll
+  if (window.scrollY > 60) {
+    // Cambia este valor para ajustar la posición de scroll
     scrollDownAnimation.pause();
     document.querySelector(".scroll-down").style.opacity = 0;
   }
-  if (window.scrollY < 60) { // Cambia este valor para ajustar la posición de scroll
+  if (window.scrollY < 60) {
+    // Cambia este valor para ajustar la posición de scroll
     scrollDownAnimation.play();
     document.querySelector(".scroll-down").style.opacity = 1;
   }
 });
-
 
 /* //recuperar los localstorage
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
