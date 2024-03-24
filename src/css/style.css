@@ -256,7 +256,12 @@ body::-webkit-scrollbar{
   }
 }
 
+.content-loaded .section-new-collection {
+  visibility: visible; 
+}
+
 .section-new-collection{
+  visibility: hidden;
   height: 100vh;
   display: flex;
   flex-flow: column nowrap;

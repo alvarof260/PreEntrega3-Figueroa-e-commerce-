@@ -1,3 +1,7 @@
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("stop-scrolling");
   const isMobile = window.innerWidth < 768;
@@ -15,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     delay: 1,
     onComplete: () => {
       document.body.classList.remove("stop-scrolling");
+      document.body.classList.add("content-loaded");
     },
   });
   tl.to(".loader__img-ctn", {
