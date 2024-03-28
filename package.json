@@ -2,6 +2,7 @@
   "name": "plug",
   "version": "1.0.0",
   "description": "Plug is a store where all major brands of clothing, sneakers and accessories are sold.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

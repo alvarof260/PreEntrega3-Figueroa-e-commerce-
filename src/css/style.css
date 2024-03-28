@@ -68,7 +68,7 @@ html {
   scroll-behavior: smooth;
 }
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   display: none;
 }
 
@@ -257,10 +257,10 @@ body::-webkit-scrollbar{
 }
 
 .content-loaded .section-new-collection {
-  visibility: visible; 
+  visibility: visible;
 }
 
-.section-new-collection{
+.section-new-collection {
   visibility: hidden;
   height: 100vh;
   display: flex;
@@ -268,12 +268,12 @@ body::-webkit-scrollbar{
   justify-content: space-between;
   align-items: center;
   position: relative;
-  padding: 0 0.5rem;
-  & .section-new-collection__aside{
+  padding: 1rem 0.5rem;
+  & .section-new-collection__aside {
     position: absolute;
     left: 0;
     top: 100px;
-    & .letter{
+    & .letter {
       writing-mode: vertical-rl;
       transform: rotate(180deg);
       font-family: var(--bebas-font);
@@ -281,49 +281,52 @@ body::-webkit-scrollbar{
       font-weight: 700;
     }
   }
-  & .ctn-images-collection{
-    height: 100%;
+  & .slider {
     width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    & .ctn-img{
-      width: 350px;
-      height: 350px;
-      aspect-ratio: 4/3 ;
-      overflow: hidden;
-      & .images-collection{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+    height: 100%;
+    overflow: hidden;
+    & .slider-wrapper{
+      position: absolute;
+      top: 0;
+      width: 8000px;
+      padding: 0 600px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 100px;
+      & .slide{
+        height: 500px;
+        width: 400px;
+        & img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
-    }
+    } 
   }
-  & .section-new-collection__info{
+  & .section-new-collection__info {
     display: flex;
     flex-flow: column nowrap;
     gap: 1rem;
-    & .info__title{
+    height: 20vh;
+    & .info__title {
       font-family: var(--bebas-font);
       font-size: var(--font-size-4xl);
       font-weight: 700;
-
+      text-align: center;
       color: var(--abbey-950);
       white-space: pre-line;
     }
-    & .info__text{
+    & .info__text {
       font-family: var(--bebas-font);
       font-size: var(--font-size-md);
       color: var(--abbey-800);
+      text-align: center;
       white-space: wrap;
-
     }
-  
   }
 }
-
 
 @media screen and (max-width: 767px) {
   .loader {
