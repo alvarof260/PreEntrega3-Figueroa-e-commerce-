@@ -45,7 +45,7 @@
     <!-- Filtro para el fondo de la página -->
     <div class="filter"></div>
 
-    <header class="header" id="nav">
+    <header class="header">
       <h1 class="header__logo">Plug</h1>
       <section class="header__icon-user">
         <svg
@@ -82,52 +82,51 @@
       </a>
     </header>
 
-    <main class="content-wrapper">
-
+    <main class="home" id="home-wrapper">
       <!--sección principal, la bienvenida al usuario -->
-      <section class="section-welcome">
-        <article>
-          <h2 class="section-welcome__title">Descubre la cultura de</h2>
-          <h2 class="section-welcome__title">las zapatillas y la moda</h2>
-          <h2 class="section-welcome__title">
-            <span class="highlight">'SNEAKERHEADS'</span>
+      <section class="home__welcome" id="welcome-section">
+        <article class="home__welcome-content">
+          <h2 class="home__welcome-title">Descubre la cultura de</h2>
+          <h2 class="home__welcome-title">las zapatillas y la moda</h2>
+          <h2 class="home__welcome-title">
+            <span class="home__welcome-title--highlight">'SNEAKERHEADS'</span>
           </h2>
         </article>
       </section>
 
       <!--sección publicidad de una marca, esto debería 
           rotar según el mes y el lanzamiento-->
-      <section class="section-new-collection">
-        <aside class="section-new-collection__aside">
-          <p class="letter">scroll horizontal</p>
+      <section class="home__brand-launch brand-launch" id="brand-launch-section">
+        <aside class="brand-launch-aside">
+          <p class="aside__letter">scroll horizontal</p>
         </aside>
         <section class="slider">
-          <article class="slider-wrapper">
-            <figure class="slide">
+          <article class="slider__wrapper">
+            <figure class="slider__slide">
               <img
                 src="./src/assets/palace/0002972-R1-28-29_V1_0006_0002965-R1-10-11_V1-681x1024.jpg"
                 alt=""
               />
             </figure>
-            <figure class="slide">
+            <figure class="slider__slide">
               <img
                 src="./src/assets/palace/0002972-R1-28-29_V1_0002_0002969-R1-21-22_V1-681x1024.jpg"
                 alt=""
               />
             </figure>
-            <figure class="slide">
+            <figure class="slider__slide">
               <img
                 src="./src/assets/palace/0002972-R1-28-29_V1_0004_0002965-R1-15-16_V1-681x1024.jpg"
                 alt=""
               />
             </figure>
-            <figure class="slide">
+            <figure class="slider__slide">
               <img
                 src="./src/assets/palace/0002972-R1-28-29_V1_0007_0002972-R1-28-29_V1-681x1024.jpg"
                 alt=""
               />
             </figure>
-            <figure class="slide">
+            <figure class="slider__slide">
               <img
                 src="./src/assets/palace/0002972-R1-28-29_V1_0008_0002969-R1-35-36_V1-681x1024.jpg"
                 alt=""
@@ -135,9 +134,9 @@
             </figure>
           </article>
         </section>
-        <article class="section-new-collection__info" id="palace">
-          <h2 class="info__title">Colección Palace x Umbro</h2>
-          <p class="info__text">
+        <article class="brand-launch__info" id="palace">
+          <h2 class="brand-launch__info-title">Colección Palace x Umbro</h2>
+          <p class="brand-launch__info-text">
             Como parte de las celebraciones por su Centenario, la marca umbro se
             ha asociado con Palace para su primera colaboración del año.
             Inspiradas en la pasión de Palace por el fútbol, las subculturas
@@ -146,7 +145,6 @@
           </p>
         </article>
       </section>
-
 
       <!-- <article class="modal-new--off">
         <figure class="modal-new__ctn-img">
@@ -167,6 +165,9 @@
           </section>
         </section>
       </article> -->
+      
+      <!--icono del scroll solo se activa 
+          cuando se queda quieta la pantalla-->
       <div class="scroll-down">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +183,9 @@
           />
         </svg>
       </div>
+
     </main>
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script type="module" src="./src/js/main.js"></script>
   </body>

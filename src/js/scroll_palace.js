@@ -4,8 +4,8 @@ export function scrollPalace() {
     let ease = 0.075;
 
     const slider = document.querySelector(".slider");
-    const sliderWrapper = document.querySelector(".slider-wrapper");
-    const slides = document.querySelectorAll(".slide");
+    const sliderWrapper = document.querySelector(".slider__wrapper");
+    const slides = document.querySelectorAll(".slider__slide");
 
     let maxScroll = sliderWrapper.offsetWidth - window.innerHeight;
 
@@ -36,7 +36,7 @@ export function scrollPalace() {
 
     function update() {
         current = lerp(current, target, ease);
-        gsap.set(".slider-wrapper", {
+        gsap.set(".slider__wrapper", {
             x: -current,
         });
         updateScaleAndPosition();

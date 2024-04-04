@@ -90,6 +90,10 @@ body::-webkit-scrollbar {
   z-index: -1;
 }
 
+#home-wrapper{
+  padding: 1rem 0;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -131,13 +135,13 @@ body::-webkit-scrollbar {
   }
 }
 
-.section-welcome {
+.home__welcome {
   height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 0.5rem;
-  & .section-welcome__title {
+  & .home__welcome-title {
     text-align: center;
     font-family: var(--caladea-font);
     font-size: calc(var(--font-size-xxl) + 0.5rem);
@@ -145,7 +149,7 @@ body::-webkit-scrollbar {
     text-wrap: pretty;
     line-height: 1.2;
     color: var(--abbey-950);
-    & .highlight {
+    & .home__welcome-title--highlight {
       font-family: var(--roboto-font);
       font-size: calc(var(--font-size-xxxl) + 0.5rem);
       font-weight: 900;
@@ -254,11 +258,11 @@ body::-webkit-scrollbar {
   }
 }
 
-.content-loaded .section-new-collection {
+.content-loaded .home__brand-launch {
   visibility: visible;
 }
 
-.section-new-collection {
+.home__brand-launch {
   visibility: hidden;
   height: 100vh;
   display: flex;
@@ -267,11 +271,11 @@ body::-webkit-scrollbar {
   align-items: center;
   position: relative;
   padding: 1rem 0.5rem;
-  & .section-new-collection__aside {
+  & .brand-launch-aside {
     position: absolute;
     left: 0;
     top: 100px;
-    & .letter {
+    & .aside__letter {
       writing-mode: vertical-rl;
       transform: rotate(180deg);
       font-family: var(--bebas-font);
@@ -283,7 +287,7 @@ body::-webkit-scrollbar {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    & .slider-wrapper {
+    & .slider__wrapper {
       position: absolute;
       top: 0;
       width: 8000px;
@@ -292,7 +296,7 @@ body::-webkit-scrollbar {
       display: flex;
       align-items: center;
       gap: 100px;
-      & .slide {
+      & .slider__slide {
         height: 500px;
         width: 400px;
         & img {
@@ -303,12 +307,12 @@ body::-webkit-scrollbar {
       }
     }
   }
-  & .section-new-collection__info {
+  & .brand-launch__info {
     display: flex;
     flex-flow: column nowrap;
     gap: 1rem;
     height: 20vh;
-    & .info__title {
+    & .brand-launch__info-title {
       font-family: var(--bebas-font);
       font-size: var(--font-size-4xl);
       font-weight: 700;
@@ -316,7 +320,7 @@ body::-webkit-scrollbar {
       color: var(--abbey-950);
       white-space: pre-line;
     }
-    & .info__text {
+    & .brand-launch__info-text {
       font-family: var(--bebas-font);
       font-size: var(--font-size-md);
       color: var(--abbey-800);
