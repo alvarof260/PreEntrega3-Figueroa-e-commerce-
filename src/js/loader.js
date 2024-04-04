@@ -2,8 +2,8 @@ export function loaderFn() {
     document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("stop-scrolling");
         const isMobile = window.innerWidth < 768;
-        gsap.set(".loader__img-ctn", { y: isMobile ? 1700 : 800 });
-        gsap.set(".loader-imgs", { x: isMobile ? 0 : 800 });
+        gsap.set(".loader__content", { y: isMobile ? 1700 : 800 });
+        gsap.set(".loader__img", { x: isMobile ? 0 : 800 });
         gsap.set(".header__logo , .header__icon-user , .header__icon-bar", {
             y: -25,
             opacity: 0,
@@ -19,14 +19,14 @@ export function loaderFn() {
                 document.body.classList.add("content-loaded");
             },
         });
-        tl.to(".loader__img-ctn", {
+        tl.to(".loader__content", {
             y: 0,
             duration: 1.5,
             stagger: 0.05,
             ease: "power3.inOut",
         })
             .to(
-                ".loader-imgs",
+                ".loader__img",
                 {
                     x: 0,
                     duration: 3,
@@ -35,7 +35,7 @@ export function loaderFn() {
                 "-=2.5"
             )
             .to(
-                ".loader__img-ctn:not(.logo)",
+                ".loader__img:not(.loader__img--logo)",
                 {
                     clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
                     duration: 1,
@@ -64,7 +64,7 @@ export function loaderFn() {
                 },
                 "-=0.5"
             )
-            .to(
+            /* .to(
                 ".modal-new--off",
                 {
                     x: 0,
@@ -73,6 +73,6 @@ export function loaderFn() {
                     ease: "power3.inOut",
                 },
                 "-=0.5"
-            );
+            ); */
     });
 }
