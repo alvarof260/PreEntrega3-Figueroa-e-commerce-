@@ -14,10 +14,10 @@ export function scrollDown() {
             scrollDownAnimation.pause();
             document.querySelector(".scroll-down").style.opacity = 0;
         }
-        if (window.scrollY < 60) {
+        if (window.scrollY < 250) {
             // Cambia este valor para ajustar la posición de scroll
-            scrollDownAnimation.play();
             document.querySelector(".scroll-down").style.opacity = 1;
+            scrollDownAnimation.play();
         }
     });
 }
