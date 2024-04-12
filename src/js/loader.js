@@ -8,7 +8,7 @@ export function loaderFn() {
             y: -25,
             opacity: 0,
         });
-        gsap.set(".section-welcome__title", { y: 100, opacity: 0 });
+        gsap.set(".home__welcome-title", { y: 100, opacity: 0 });
         gsap.set(".scroll-down", { opacity: 0 });
         gsap.set(".modal-new--off", { opacity: 0, x: 100 });
 
@@ -54,7 +54,7 @@ export function loaderFn() {
                 "-=0.5"
             )
             .to(
-                ".header__logo , .header__icon-user , .header__icon-bar , .section-welcome__title , .scroll-down",
+                ".header__logo , .header__icon-user , .header__icon-bar , .home__welcome-title , .scroll-down",
                 {
                     y: 0,
                     stagger: 0.1,
