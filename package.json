@@ -1,23 +1,14 @@
 {
-  "name": "plug",
-  "version": "1.0.0",
-  "description": "Plug is a store where all major brands of clothing, sneakers and accessories are sold.",
+  "name": "proyectofinal-figueroa",
+  "private": true,
+  "version": "0.0.0",
   "type": "module",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "author": "Alvaro Estanislao Figueroa",
-  "keywords": [
-    "clothing",
-    "sneakers",
-    "accessories",
-    "brands",
-    "ecommerce",
-    "store",
-    "javascript",
-    "html",
-    "css"
-  ],
-  "license": "ISC"
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
 }
